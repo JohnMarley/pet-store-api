@@ -13,7 +13,6 @@ public abstract class CommonSteps {
     private final ResponseSpecificationUtils responseSpecificationUtils;
     @Getter
     private final TestContext testContext;
-    ;
 
     protected CommonSteps(ResponseSpecificationUtils responseSpecificationUtils, TestContext testContext) {
         this.responseSpecificationUtils = responseSpecificationUtils;
@@ -37,8 +36,12 @@ public abstract class CommonSteps {
     public abstract Response verifyResponseSchema(int responseCode, String schemaFileName);
 
     public void checkResponseStatus(int expectedResponseStatus, Response response) {
+        checkResponseStatus(expectedResponseStatus, response, "");
+    }
+
+    public void checkResponseStatus(int expectedResponseStatus, Response response, String message) {
         Assertions.assertThat(response.statusCode())
-                .as("Response body: \n" + response.getBody().asString())
+                .as("%s \nResponse body: \n%s", message, response.getBody().asString())
                 .isEqualTo(expectedResponseStatus);
     }
 }

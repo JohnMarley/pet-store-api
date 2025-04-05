@@ -5,6 +5,11 @@ plugins {
 group = 'com.example.petstore'
 version = '1.0-SNAPSHOT'
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
 repositories {
     mavenCentral()
 }
@@ -47,6 +52,13 @@ dependencies {
 
 test {
     useTestNG() {
-        suites 'src/test/resources/' + "contractTestSuite" + '.xml'
+        if (project.hasProperty('suite')) {
+            def suiteName = project.getProperty('suite')
+            suites "src/test/resources/${suiteName}.xml"
+        } else {
+            // Default fallback to run all tests
+            suites 'src/test/resources/' + "contractTestSuite" + '.xml'
+            suites 'src/test/resources/' + "functionalTestSuite" + '.xml'
+        }
     }
 }

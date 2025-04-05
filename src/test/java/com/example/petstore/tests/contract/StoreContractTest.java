@@ -6,6 +6,8 @@ import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
 
+import java.math.BigInteger;
+
 public class StoreContractTest extends BeforeTests {
 
     @Autowired
@@ -33,12 +35,13 @@ public class StoreContractTest extends BeforeTests {
                 .verifyResponseSchema(HttpStatus.SC_OK, "getOrderByIdGET200.json");
     }
 
+//    Please note that this test is failed due to defect, since 'code' is always 1 and not reflect actual response status code
     @Test(description = "Verify GET /store/order/{orderId} api contract 404 response. " +
             "In the swagger documentation 404 response is not documented, " +
             "so test was written based on actually implemented 404 response schema")
     void verifyGetOrderByIdSchema404() {
         storeSteps
-                .getPurchaseByOrderIdResponse(142)
+                .getPurchaseByOrderIdResponse(BigInteger.valueOf(142))
                 .verifyResponseSchema(HttpStatus.SC_NOT_FOUND, "getOrderByIdGET404.json");
     }
 

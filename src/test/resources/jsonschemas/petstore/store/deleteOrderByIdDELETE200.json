@@ -7,10 +7,12 @@
       "additionalProperties": false,
       "properties": {
         "code": {
-          "type": "integer"
+          "type": "integer",
+          "enum": [200]
         },
         "type": {
-          "type": "string"
+          "type": "string",
+          "enum": ["unknown"]
         },
         "message": {
           "type": "string"

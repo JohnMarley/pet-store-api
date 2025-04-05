@@ -5,6 +5,8 @@ import com.example.petstore.model.PetOrderPayloadDto;
 import io.restassured.response.Response;
 import org.springframework.stereotype.Component;
 
+import java.math.BigInteger;
+
 @Component
 public class StoreUtils {
 
@@ -23,7 +25,7 @@ public class StoreUtils {
         return storeCall.createOrderForPet(payload);
     }
 
-    public Response getPurchaseByOrderIdResponse(int orderId) {
+    public Response getPurchaseByOrderIdResponse(BigInteger orderId) {
         return storeCall.getPurchaseByOrderId(orderId);
     }
 

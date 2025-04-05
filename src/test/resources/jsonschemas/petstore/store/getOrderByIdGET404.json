@@ -7,13 +7,16 @@
       "additionalProperties": false,
       "properties": {
         "code": {
-          "type": "integer"
+          "type": "integer",
+          "enum": [404]
         },
         "type": {
-          "type": "string"
+          "type": "string",
+          "enum": ["error"]
         },
         "message": {
-          "type": "string"
+          "type": "string",
+          "enum": ["Order not found"]
         }
       },
       "required": [
