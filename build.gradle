@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.example.petstore'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    ext {
+        springVersion = '6.2.5'
+        lombokVersion = '1.18.30'
+        restAssuredVersion = '5.5.1'
+    }
+    // Spring
+    implementation "org.springframework:spring-core:$springVersion"
+    implementation "org.springframework:spring-context:$springVersion"
+    implementation "org.springframework:spring-test:$springVersion"
+
+    // Rest-assured
+    testImplementation "io.rest-assured:rest-assured:$restAssuredVersion"
+    testImplementation "io.rest-assured:json-schema-validator:$restAssuredVersion"
+
+    // Lombok
+    compileOnly "org.projectlombok:lombok:$lombokVersion"
+    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+    testCompileOnly "org.projectlombok:lombok:$lombokVersion"
+    testAnnotationProcessor "org.projectlombok:lombok:$lombokVersion"
+
+    // TestNG
+    implementation "org.testng:testng:7.11.0"
+
+    // Assertions
+    implementation "org.assertj:assertj-core:3.27.3"
+
+    //Utils
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.4'
+    implementation "org.apache.commons:commons-collections4:4.4"
+
+    // Logging
+    implementation "ch.qos.logback:logback-classic:1.4.8"
+}
+
+test {
+    useTestNG() {
+        suites 'src/test/resources/' + "contractTestSuite" + '.xml'
+    }
+}
