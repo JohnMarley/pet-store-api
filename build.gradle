@@ -51,6 +51,7 @@ dependencies {
 }
 
 test {
+    systemProperties = System.properties
     useTestNG() {
         if (project.hasProperty('suite')) {
             def suiteName = project.getProperty('suite')
